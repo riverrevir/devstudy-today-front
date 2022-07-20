@@ -1,1 +1,4 @@
-DEVSTUDY intoductions
+DEVSTUDY introductions
+
+Team Members:
+    EunKuk Kim
