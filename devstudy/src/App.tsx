@@ -3,7 +3,7 @@ import "./styles/global.css";
 function App() {
   return (
     <>
-      <h2>DevStudy Project</h2>
+      <h2>DevStudy Project.</h2>
     </>
   );
 }
