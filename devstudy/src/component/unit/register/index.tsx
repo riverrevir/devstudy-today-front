@@ -31,6 +31,7 @@ export default function Register() {
 
   return (
     <S.Wrapper>
+      <div>Hello World </div>
       <S.Title>회원가입</S.Title>
       <input placeholder="아이디" name="userId" onChange={onChangeInputs} />
       <input
