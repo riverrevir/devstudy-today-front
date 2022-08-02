@@ -1,12 +1,19 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  background-color: #efeff4;
+`;
+
 export const Wrapper = styled.div`
   width: 420px;
   height: 530px;
-  margin: 130px auto 0px auto;
+  margin: auto;
   border-radius: 8px;
   box-shadow: 2px 4px 8px #888888;
   border: none;
+  background-color: #fff;
 `;
 
 export const Title = styled.h2`
