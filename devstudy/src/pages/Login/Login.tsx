@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import '../../styles/Login.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 export default function Login() {
+    const [userId, setUserId] = useState('');
+    const [password, setPassword] = useState('');
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        axios.post(`${process.env.REACT_APP_API}/api/user/login`, {
+            userId,
+            password
+        }).then(res => console.log(res)).catch(err => console.log(err))
+
     }
 
     return (
@@ -16,8 +24,8 @@ export default function Login() {
                     <FontAwesomeIcon icon={faCircleUser} className='login-avatar' />
                 </div>
                 <h1 className="login-title">로그인</h1>
-                <input type="text" name="email" id="email" placeholder="아이디" />
-                <input type="password" name="password" id="password" placeholder="비밀번호" />
+                <input type="text" name="email" id="email" placeholder="아이디" onChange={(e) => setUserId(e.target.value)} />
+                <input type="password" name="password" id="password" placeholder="비밀번호" onChange={(e) => setPassword(e.target.value)} />
                 <button type="submit">
                     <small>로그인</small>
                 </button>
