@@ -39,8 +39,9 @@ export default function Login() {
                         <input type="checkbox" name="save" id="save" />
                         <span>아이디 저장</span>
                     </div>
-                    <div>
+                    <div className="login-link">
                         <Link to='/password'>비밀번호 찾기</Link>
+                        <Link to='/register'>계정 만들러 가기</Link>
                     </div>
                 </div>
             </form>

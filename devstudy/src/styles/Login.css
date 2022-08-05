@@ -54,7 +54,11 @@ button {
   justify-content: space-between;
   color: #3ba3de;
 }
-
+.login-link {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
 /* .signup-guide {
   margin-left: auto;
 }
