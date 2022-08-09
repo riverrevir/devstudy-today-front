@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Wrapper = styled.section`
-  position: fixed;
   width: 220px;
   height: 100vh;
   background-color: #242526;
