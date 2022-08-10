@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import * as S from "./register-css";
 import Button from "../../common/button01";
+import { instance } from "../../../api";
 
 export default function Register() {
   const [inputs, setInputs] = useState({
@@ -18,15 +19,10 @@ export default function Register() {
     });
   };
 
-  const onClickGender = (event: any) => {
-    console.log("event.target.checked:", event.target.checked);
-    console.log(event.target.value);
-  };
+  const onClickSubmit = async () => {
+    const { userId, password1, password2, email, sex } = inputs;
 
-  const onClickSubmit = () => {
-    const { userId, password1, password2, email } = inputs;
-
-    if (!userId || !password1 || !password2 || !email) {
+    if (!userId || !password1 || !password2 || !email || !sex) {
       return alert("회원정보를 입력해주세요");
     }
 
@@ -36,6 +32,23 @@ export default function Register() {
 
     if (password1 !== password2) {
       return alert("비밀번호가 일치하지않습니다");
+    }
+
+    try {
+      await instance
+        .post(`/user/register`, {
+          userId,
+          password1,
+          password2,
+          email,
+          sex,
+        })
+        .then((response) => {
+          console.log("response:", response);
+          console.log("response.data:", response.data);
+        });
+    } catch (error) {
+      if (error instanceof Error) console.log("register error:", error.message);
     }
   };
 
@@ -74,7 +87,7 @@ export default function Register() {
                 type="radio"
                 name="sex"
                 value="male"
-                onClick={onClickGender}
+                onChange={onChangeInputs}
               />
             </S.MaleWrapper>
             <S.FemaleWrapper>
@@ -83,7 +96,7 @@ export default function Register() {
                 type="radio"
                 name="sex"
                 value="female"
-                onClick={onClickGender}
+                onChange={onChangeInputs}
               />
             </S.FemaleWrapper>
           </S.GenderWrapper>
