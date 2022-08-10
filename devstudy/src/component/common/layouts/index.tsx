@@ -6,19 +6,19 @@ interface LayoutProps {
   children: ReactChild;
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+`;
 
-const BodyWrapper = styled.div``;
-
-const Body = styled.div``;
+const Body = styled.div`
+  width: 100%;
+`;
 
 export default function Layout(props: LayoutProps) {
   return (
     <Wrapper>
-      <BodyWrapper>
-        <Sidebar />
-        <Body>{props.children}</Body>
-      </BodyWrapper>
+      <Sidebar />
+      <Body>{props.children}</Body>
     </Wrapper>
   );
 }
