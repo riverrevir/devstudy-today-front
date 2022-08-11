@@ -34,6 +34,32 @@ export default function Register() {
       return alert("비밀번호가 일치하지않습니다");
     }
 
+    if (password1.length <= 2) {
+      return alert("비밀번호를 3자리 이상 적어주세요");
+    }
+
+    try {
+      await instance.get(`user/auth/id/${userId}/exists`).then((response) => {
+        if (response.data.status === true) {
+          return alert(`${userId} 는 사용 하실수 없는 아이디 입니다.`);
+        }
+      });
+    } catch (error) {
+      if (error instanceof Error)
+        console.log("userId duplicate error:", error.message);
+    }
+
+    try {
+      await instance.get(`user/auth/email/${email}/exists`).then((response) => {
+        if (response.data.status === true) {
+          return alert(`${email} 는 사용 하실수 없는 이메일 입니다.`);
+        }
+      });
+    } catch (error) {
+      if (error instanceof Error)
+        console.log("email duplicate error:", error.message);
+    }
+
     try {
       await instance
         .post(`/user/register`, {
