@@ -19,6 +19,38 @@ export default function Register() {
     });
   };
 
+  const onClickCheckIdDuplicate = async () => {
+    const { userId } = inputs;
+    try {
+      await instance.get(`user/auth/id/${userId}/exists`).then((response) => {
+        if (response.data.status === true) {
+          return alert(`${userId} 는 사용 하실수 없는 아이디 입니다.`);
+        } else {
+          alert("사용 가능한 아이디 입니다.");
+        }
+      });
+    } catch (error) {
+      if (error instanceof Error)
+        console.log("userId duplicate error:", error.message);
+    }
+  };
+
+  const onClickCheckEmailDuplicate = async () => {
+    const { email } = inputs;
+    try {
+      await instance.get(`user/auth/email/${email}/exists`).then((response) => {
+        if (response.data.status === true) {
+          return alert(`${email} 는 사용 하실수 없는 이메일 입니다.`);
+        } else {
+          alert("사용 가능한 이메일 입니다.");
+        }
+      });
+    } catch (error) {
+      if (error instanceof Error)
+        console.log("email duplicate error:", error.message);
+    }
+  };
+
   const onClickSubmit = async () => {
     const { userId, password1, password2, email, sex } = inputs;
 
@@ -36,28 +68,6 @@ export default function Register() {
 
     if (password1.length <= 2) {
       return alert("비밀번호를 3자리 이상 적어주세요");
-    }
-
-    try {
-      await instance.get(`user/auth/id/${userId}/exists`).then((response) => {
-        if (response.data.status === true) {
-          return alert(`${userId} 는 사용 하실수 없는 아이디 입니다.`);
-        }
-      });
-    } catch (error) {
-      if (error instanceof Error)
-        console.log("userId duplicate error:", error.message);
-    }
-
-    try {
-      await instance.get(`user/auth/email/${email}/exists`).then((response) => {
-        if (response.data.status === true) {
-          return alert(`${email} 는 사용 하실수 없는 이메일 입니다.`);
-        }
-      });
-    } catch (error) {
-      if (error instanceof Error)
-        console.log("email duplicate error:", error.message);
     }
 
     try {
@@ -83,11 +93,21 @@ export default function Register() {
       <S.Wrapper>
         <S.Title>회원가입</S.Title>
         <S.UserInfoWrapper>
-          <S.UserId
-            placeholder="아이디"
-            name="userId"
-            onChange={onChangeInputs}
-          />
+          <S.UserIdWrapper>
+            <S.UserId
+              placeholder="아이디"
+              name="userId"
+              onChange={onChangeInputs}
+            />
+            <Button
+              onClick={onClickCheckIdDuplicate}
+              text={"아이디 중복확인"}
+              width={"100px"}
+              height={"40px"}
+              color={"#fff"}
+              borderRadius={"2px 0px 0px 2px"}
+            />
+          </S.UserIdWrapper>
           <S.Password1
             type="password"
             placeholder="비밀번호"
@@ -100,12 +120,22 @@ export default function Register() {
             name="password2"
             onChange={onChangeInputs}
           />
-          <S.Email
-            placeholder="이메일"
-            name="email"
-            onChange={onChangeInputs}
-            type="email"
-          />
+          <S.EmailWrapper>
+            <S.Email
+              placeholder="이메일"
+              name="email"
+              onChange={onChangeInputs}
+              type="email"
+            />
+            <Button
+              onClick={onClickCheckEmailDuplicate}
+              text={"이메일 중복확인"}
+              width={"100px"}
+              height={"40px"}
+              color={"#fff"}
+              borderRadius={"2px 0px 0px 2px"}
+            />
+          </S.EmailWrapper>
           <S.GenderWrapper>
             <S.MaleWrapper>
               <label>남자</label>
@@ -129,7 +159,7 @@ export default function Register() {
           <Button
             onClick={onClickSubmit}
             text={"회원가입"}
-            width={"240px"}
+            width={"260px"}
             height={"40px"}
             color={"#fff"}
           />
