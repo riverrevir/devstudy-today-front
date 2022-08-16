@@ -11,7 +11,7 @@ export default function Calendar() {
 
   const handleSelectSlot = useCallback(
     ({ start, end }) => {
-      const title = window.prompt("Add new events");
+      const title = window.prompt("일정 적기");
       if (title) {
         setEvents((prev) => [...prev, { start, end, title }]);
       }
@@ -20,8 +20,7 @@ export default function Calendar() {
   );
 
   const onClickRemoveEvent = (event: any) => {
-    console.log("event:", event);
-    const newEvents = events.filter((el) => el.title !== event.title);
+    const newEvents = events.filter((el) => el.start !== event.start);
     setEvents([...newEvents, events]);
   };
 
@@ -37,7 +36,7 @@ export default function Calendar() {
     console.log("eventGetter:", event.hexColor);
     // const backgroundColor = "#" + event.hexColor;
     const style = {
-      backgroundColor: "khaki",
+      backgroundColor: "beige",
       borderRadius: "0px",
       opacity: 0.8,
       color: "black",
@@ -50,18 +49,20 @@ export default function Calendar() {
   };
 
   return (
-    <S.Wrapper>
-      <S.ScheduleCalendar
-        localizer={localizer}
-        events={events}
-        selectable={true}
-        views={["month", "week", "day"]}
-        defaultDate={defaultDate}
-        onSelectSlot={handleSelectSlot}
-        onSelectEvent={onClickRemoveEvent}
-        scrollToTime={scrollToTime}
-        eventPropGetter={eventStyleGetter}
-      />
-    </S.Wrapper>
+    <>
+      <S.Wrapper>
+        <S.ScheduleCalendar
+          localizer={localizer}
+          events={events}
+          selectable={true}
+          views={["month", "week", "day"]}
+          defaultDate={defaultDate}
+          onSelectSlot={handleSelectSlot}
+          onSelectEvent={onClickRemoveEvent}
+          scrollToTime={scrollToTime}
+          eventPropGetter={eventStyleGetter}
+        />
+      </S.Wrapper>
+    </>
   );
 }
