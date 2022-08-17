@@ -5,6 +5,7 @@ export const Wrapper = styled.section`
   width: 220px;
   height: 100vh;
   background-color: #242526;
+  z-index: 1;
 `;
 
 export const TitleWrapper = styled.div`

@@ -1,5 +1,6 @@
 import * as S from "./home-css";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import HeatMap from "./heatmap/heatmap";
 
 export default function Home() {
   return (
@@ -48,10 +49,11 @@ export default function Home() {
       </S.StatisticsWrapper>
       <S.BottomWrapper>
         <S.CalendarWrapper>
-          <div>Calendar here</div>
+          <div>Simple Calendar</div>
         </S.CalendarWrapper>
         <S.ProgressWrapper>
-          <div>Progress bars</div>
+          <div>HeatMap</div>
+          <HeatMap />
         </S.ProgressWrapper>
       </S.BottomWrapper>
     </S.Wrapper>
