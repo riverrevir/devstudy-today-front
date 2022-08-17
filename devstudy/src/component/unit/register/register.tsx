@@ -1,7 +1,9 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import * as S from "./register-css";
 import Button from "../../common/button01";
 import { instance } from "../../../api";
+import { useNavigate } from "react-router";
+import { NavigationUtil } from "../../../util/navigation-util";
 
 export default function Register() {
   const [inputs, setInputs] = useState({
@@ -11,6 +13,10 @@ export default function Register() {
     sex: "",
     email: "",
   });
+
+  const focusRef = useRef<HTMLInputElement>(null);
+
+  const navigate = useNavigate();
 
   const onChangeInputs = (event: ChangeEvent<HTMLInputElement>) => {
     setInputs({
@@ -80,6 +86,7 @@ export default function Register() {
           sex,
         })
         .then((response) => {
+          navigate(NavigationUtil.login);
           console.log("response:", response);
           console.log("response.data:", response.data);
         });
@@ -87,6 +94,12 @@ export default function Register() {
       if (error instanceof Error) console.log("register error:", error.message);
     }
   };
+
+  useEffect(() => {
+    if (focusRef.current !== null) {
+      focusRef.current.focus();
+    }
+  }, []);
 
   return (
     <S.Container>
@@ -98,6 +111,7 @@ export default function Register() {
               placeholder="아이디"
               name="userId"
               onChange={onChangeInputs}
+              ref={focusRef}
             />
             <Button
               onClick={onClickCheckIdDuplicate}

@@ -15,9 +15,15 @@ const Body = styled.div`
 `;
 
 export default function Layout(props: LayoutProps) {
+  const hideSidebar =
+    window.location.pathname === "/login" ||
+    window.location.pathname === "/register" ? null : (
+      <Sidebar />
+    );
+
   return (
     <Wrapper>
-      <Sidebar />
+      {hideSidebar}
       <Body>{props.children}</Body>
     </Wrapper>
   );
