@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+// import { useState } from "react";
 
 const Wrapper = styled.div`
-  width: 22vw;
+  width: 300px;
   background: #d8d8d8;
   position: absolute;
   z-index: 5;
@@ -41,15 +41,15 @@ const XIcon = styled(FontAwesomeIcon)`
   }
 `;
 
-const EventInput = styled.input`
-  width: 200px;
-  height: 40px;
-  padding: 8px;
-  border-radius: 10px;
-  ::placeholder {
-    opacity: 0.5;
-  }
-`;
+// const EventInput = styled.input`
+//   width: 200px;
+//   height: 40px;
+//   padding: 8px;
+//   border-radius: 10px;
+//   ::placeholder {
+//     opacity: 0.5;
+//   }
+// `;
 
 const CheckboxWrapper = styled.div`
   width: 150px;
@@ -57,10 +57,25 @@ const CheckboxWrapper = styled.div`
   margin-top: 8px;
 `;
 
-const CheckboxLabel = styled.label`
+const HighestLabel = styled.label`
   font-weight: 500;
   font-size: 20px;
   margin: 4px;
+  color: #ff6666;
+`;
+
+const NormalLabel = styled.label`
+  font-weight: 500;
+  font-size: 20px;
+  margin: 4px;
+  color: #5ced73;
+`;
+
+const LowestLabel = styled.label`
+  font-weight: 500;
+  font-size: 20px;
+  margin: 4px;
+  color: #00d2ff;
 `;
 
 const Checkbox = styled.input`
@@ -99,14 +114,9 @@ const CancelButton = styled.input`
 `;
 
 export default function Modal(props: any) {
-  console.log("props.events:", props.events);
-
-  const [schedule, setSchedule] = useState<any[]>([]);
+  // const [schedule, setSchedule] = useState<any[]>([]);
 
   const onChangeEvents = (event: any) => {
-    setSchedule(event.target.value);
-    setSchedule([...schedule, props.event]);
-    console.log("schedule:", schedule);
     console.log(event.target.value);
   };
 
@@ -114,9 +124,8 @@ export default function Modal(props: any) {
     props.setIsModal(false);
   };
 
-  const onClickSubmit = ({ title }: any) => {
+  const onClickSubmit = () => {
     props.setIsModal(false);
-    console.log("title:", title);
   };
 
   return (
@@ -124,14 +133,29 @@ export default function Modal(props: any) {
       <XIcon icon={faX} onClick={onClickCancel} />
       <ModalWrapper>
         <Title>작업 우선 순위</Title>
-        <EventInput placeholder="스케줄 적기" onChange={onChangeEvents} />
+        {/* <EventInput placeholder="스케줄 적기" onChange={onChangeEvents} /> */}
         <CheckboxWrapper>
-          <CheckboxLabel>Highest</CheckboxLabel>
-          <Checkbox type="radio" value="highest" />
-          <CheckboxLabel>Normal</CheckboxLabel>
-          <Checkbox type="radio" value="normal" />
-          <CheckboxLabel>Lowest</CheckboxLabel>
-          <Checkbox type="radio" value="lowest" />
+          <HighestLabel>Highest</HighestLabel>
+          <Checkbox
+            type="radio"
+            name="options"
+            value="highest"
+            onChange={onChangeEvents}
+          />
+          <NormalLabel>Normal</NormalLabel>
+          <Checkbox
+            type="radio"
+            name="options"
+            value="normal"
+            onChange={onChangeEvents}
+          />
+          <LowestLabel>Lowest</LowestLabel>
+          <Checkbox
+            type="radio"
+            name="options"
+            value="lowest"
+            onChange={onChangeEvents}
+          />
         </CheckboxWrapper>
         <ButtonWrapper>
           <SubmitButton type="button" value="Ok" onClick={onClickSubmit} />
