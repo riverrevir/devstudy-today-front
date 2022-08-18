@@ -1,5 +1,6 @@
 import { ReactChild } from "react";
 import styled from "styled-components";
+import Header from "./header/header";
 import Sidebar from "./sidebar/sidebar";
 
 interface LayoutProps {
@@ -17,14 +18,25 @@ const Body = styled.div`
 export default function Layout(props: LayoutProps) {
   const hideSidebar =
     window.location.pathname === "/login" ||
-    window.location.pathname === "/register" ? null : (
+    window.location.pathname === "/register" ||
+    window.location.pathname === "/" ? null : (
       <Sidebar />
     );
 
+  const hideHeader =
+    window.location.pathname === "/calendar" ||
+    window.location.pathname === "/home" ||
+    window.location.pathname === "/mypage" ? null : (
+      <Header />
+    );
+
   return (
-    <Wrapper>
-      {hideSidebar}
-      <Body>{props.children}</Body>
-    </Wrapper>
+    <>
+      {hideHeader}
+      <Wrapper>
+        {hideSidebar}
+        <Body>{props.children}</Body>
+      </Wrapper>
+    </>
   );
 }
