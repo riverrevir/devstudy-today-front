@@ -11,35 +11,31 @@ export default function Landing() {
       <S.CardWrapper>
         <S.FirstCardOuterWrapper>
           <S.FirstCardWrapper>
-            <S.FirstCardTitle>내가 원하는 스택만 확실하게</S.FirstCardTitle>
-            <S.FirstCardInfo>온라인 클래스</S.FirstCardInfo>
+            <S.FirstCardTitle>내가 원하는 만큼만 확실하게!</S.FirstCardTitle>
+            <S.FirstCardInfo>스터디 관리</S.FirstCardInfo>
             <S.FirstCardList>
-              <li>오프라인의 커리큘럼과 멘토링 시스템 그대로 제공</li>
-              <li>지속적으로 업데이트되는 코드캠프 자체 콘텐츠로 학습</li>
-              <li>하루 9시간 멘토상주, 기다림 없는 즉각 피드백</li>
+              <li>본인 스케줄에 따라 공부을 시작 해보세요</li>
+              <li>자유롭게 부담없이 공부를 시작해보세요</li>
             </S.FirstCardList>
           </S.FirstCardWrapper>
         </S.FirstCardOuterWrapper>
         <S.SecondCardOuterWrapper>
           <S.SecondCardWrapper>
-            <S.SecondCardTitle>어디서나 커리어 점프</S.SecondCardTitle>
-            <S.SecondCardInfo>코드캠프 온라인</S.SecondCardInfo>
-            <ul>
-              <li>오프라인의 커리큘럼과 멘토링 시스템 그대로 제공</li>
-              <li>지속적으로 업데이트되는 코드캠프 자체 콘텐츠로 학습</li>
-              <li>하루 9시간 멘토상주, 기다림 없는 즉각 피드백</li>
-            </ul>
+            <S.SecondCardTitle>시간 관리가 어려우신분들에게</S.SecondCardTitle>
+            <S.SecondCardInfo>일정 관리</S.SecondCardInfo>
+            <S.SecondCardList>
+              <li>무엇을 끝내야하고 끝냈는지 쉽게 볼수 있어요</li>
+              <li>공부 일정을 관리 해보세요</li>
+            </S.SecondCardList>
           </S.SecondCardWrapper>
         </S.SecondCardOuterWrapper>
         <S.ThirdCardOuterWrapper>
           <S.ThirdCardWrapper>
-            <S.ThirdCardTitle>생생한 현장감</S.ThirdCardTitle>
-            <S.ThirdCardInfo>코드캠프 오프라인</S.ThirdCardInfo>
-            <ul>
-              <li>오프라인의 커리큘럼과 멘토링 시스템 그대로 제공</li>
-              <li>지속적으로 업데이트되는 코드캠프 자체 콘텐츠로 학습</li>
-              <li>하루 9시간 멘토상주, 기다림 없는 즉각 피드백</li>
-            </ul>
+            <S.ThirdCardTitle>나이 성별 상관없이</S.ThirdCardTitle>
+            <S.ThirdCardInfo>쉽고 간편한</S.ThirdCardInfo>
+            <S.ThirdCardList>
+              <li>간편하고 쉽게 공부을 시작 그리고 종료 해보세요</li>
+            </S.ThirdCardList>
           </S.ThirdCardWrapper>
         </S.ThirdCardOuterWrapper>
       </S.CardWrapper>
