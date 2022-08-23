@@ -14,9 +14,13 @@ export default function Header() {
     navigate(NavigationUtil.register);
   };
 
+  const onClickHome = () => {
+    navigate(NavigationUtil.landingpage);
+  };
+
   return (
     <S.Wrapper>
-      <S.Title>devStudy</S.Title>
+      <S.Title onClick={onClickHome}>devStudy</S.Title>
       <S.NavWrapper>
         <S.FirstWrapper>
           <div>Product</div>
