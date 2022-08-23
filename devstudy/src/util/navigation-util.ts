@@ -4,4 +4,5 @@ export const NavigationUtil = {
   login: "/login",
   mypage: "/mypage",
   register: "/register",
+  landingpage: "/",
 };

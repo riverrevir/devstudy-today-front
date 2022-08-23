@@ -9,11 +9,15 @@ export const Wrapper = styled.header`
   position: fixed;
   background: beige;
   background-color: #3ba3de;
+  z-index: 1;
 `;
 
 export const Title = styled.h2`
   padding: 12px;
   width: 20%;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const NavWrapper = styled.nav`
