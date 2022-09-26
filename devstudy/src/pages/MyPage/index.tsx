@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+const menuItems = [
+  { id: 1, name: '내 정보' },
+  { id: 2, name: '내 게시물' },
+  { id: 3, name: '계정 관리' }
+];
+
 function MyPage() {
   return <Container>
     <MyPageWrapper>
@@ -9,7 +15,11 @@ function MyPage() {
           <CouponInfo>사용가능한 쿠폰: {1}</CouponInfo>
         </Header>
         <MenuList>
-          <ItemWrapper></ItemWrapper>
+          {menuItems.map((item) =>
+            <ItemWrapper key={item.id}>
+              {item.name}
+            </ItemWrapper>
+          )}
         </MenuList>
       </SideMenuWrapper>
       <FormWrapper>
