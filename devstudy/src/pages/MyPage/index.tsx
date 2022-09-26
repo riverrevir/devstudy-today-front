@@ -4,7 +4,13 @@ function MyPage() {
   return <Container>
     <MyPageWrapper>
       <SideMenuWrapper>
-
+        <Header>
+          <Title>안녕하세요 {'Eunkuk Kim'}님!</Title>
+          <CouponInfo>사용가능한 쿠폰: {1}</CouponInfo>
+        </Header>
+        <MenuList>
+          <ItemWrapper></ItemWrapper>
+        </MenuList>
       </SideMenuWrapper>
       <FormWrapper>
         <MyPageForm>
@@ -33,11 +39,25 @@ const MyPageWrapper = styled.div`
   box-shadow: 1px 0px 21px -6px rgba(0,0,0,0.46);
 `
 const SideMenuWrapper = styled.div`
-  /* background-color: orange; */
+  background-color: orange;
+  padding: 30px;
 `
 const FormWrapper = styled.div`
   /* background-color: pink; */
 `
 const MyPageForm = styled.form`
   /* background-color: yellow; */
+`
+const Header = styled.header`
+
+`
+const Title = styled.h1`
+  margin-top: 0;
+`
+const CouponInfo = styled.p`
+`
+const MenuList = styled.ul`
+
+`
+const ItemWrapper = styled.li`
 `
