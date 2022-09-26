@@ -13,7 +13,7 @@ function MyPage() {
       <SideMenuWrapper>
         <Header>
           <Title>안녕하세요 {'Eunkuk Kim'}님!</Title>
-          <CouponInfo>사용가능한 쿠폰: {1}</CouponInfo>
+          <CouponInfo>사용가능한 쿠폰: <CouponCounter>{1}</CouponCounter></CouponInfo>
         </Header>
         <MenuList>
           {menuItems.map((item) =>
@@ -56,6 +56,15 @@ const Title = styled.h1`
   margin-top: 0;
 `
 const CouponInfo = styled.p`
+`
+const CouponCounter = styled.a`
+  color: red;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 5px;
+  &:hover {
+    font-weight: 600;
+  }
 `
 const MenuList = styled.ul`
   list-style: none;
