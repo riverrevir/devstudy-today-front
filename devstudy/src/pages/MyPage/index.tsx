@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import MyPageForm from "./MyPageForm";
 
 const menuItems = [
   { id: 1, name: '내 정보' },
@@ -22,11 +23,7 @@ function MyPage() {
           )}
         </MenuList>
       </SideMenuWrapper>
-      <FormWrapper>
-        <MyPageForm>
-
-        </MyPageForm>
-      </FormWrapper>
+      <MyPageForm />
     </MyPageWrapper>
   </Container>
 }
@@ -49,14 +46,8 @@ const MyPageWrapper = styled.div`
   box-shadow: 1px 0px 21px -6px rgba(0,0,0,0.46);
 `
 const SideMenuWrapper = styled.div`
-  background-color: orange;
+  /* background-color: orange; */
   padding: 30px;
-`
-const FormWrapper = styled.div`
-  /* background-color: pink; */
-`
-const MyPageForm = styled.form`
-  /* background-color: yellow; */
 `
 const Header = styled.header`
 
@@ -67,7 +58,17 @@ const Title = styled.h1`
 const CouponInfo = styled.p`
 `
 const MenuList = styled.ul`
+  list-style: none;
+  padding-left: 0;
+  margin-top: 50px;
 
+  &:last-child {
+    border-bottom: 1px solid #BCBCBC;
+  }
 `
 const ItemWrapper = styled.li`
+  border-top: 1px solid #BCBCBC;
+  height: 60px;
+  display: flex;
+  align-items: center;
 `
