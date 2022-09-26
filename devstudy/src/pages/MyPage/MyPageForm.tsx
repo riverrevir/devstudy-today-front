@@ -15,7 +15,7 @@ const Inputs = [
   },
   {
     id: 3,
-    type: 'number',
+    type: 'text',
     title: '휴대전화',
   },
   {
