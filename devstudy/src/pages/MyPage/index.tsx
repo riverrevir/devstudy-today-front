@@ -80,4 +80,10 @@ const ItemWrapper = styled.li`
   height: 60px;
   display: flex;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+    background-color: #fcfcfc;
+    backdrop-filter: blur(10px);
+    font-weight: 500;
+  }
 `
