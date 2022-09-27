@@ -1,4 +1,4 @@
-type FormType = "username" | "email" | "phone" | "password";
+export type FormType = "username" | "email" | "phone" | "password";
 
 function validate(state: string, formType: FormType) {
   let isValid = false;
