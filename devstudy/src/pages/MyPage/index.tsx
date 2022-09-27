@@ -43,7 +43,7 @@ const MyPageWrapper = styled.div`
   margin: auto;
   /* background-color: skyblue; */
   border-radius: 10px;
-  box-shadow: 1px 0px 21px -6px rgba(0,0,0,0.46);
+  box-shadow: 0px 4px 11px -3px rgba(130,130,130,0.56);
 `
 const SideMenuWrapper = styled.div`
   /* background-color: orange; */
