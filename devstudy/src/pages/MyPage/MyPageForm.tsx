@@ -1,29 +1,34 @@
 import styled from "styled-components";
+// import type { FormType } from "../../util/profile-validate";
+import ProfileUpdateInput from "./ProfileUpdateInput";
 
 const Inputs = [
   {
     id: 1,
     type: 'text',
     title: '이름',
+    formType: 'username'
   },
   {
     id: 2,
     type: 'email',
     title: '이메일',
     notice: '인증필요',
-    button: '이메일 전송',
+    formType: 'email'
   },
   {
     id: 3,
     type: 'text',
     title: '휴대전화',
+    formType: 'phone'
   },
   {
     id: 4,
     type: 'password',
-    title: '비밀번호'
+    title: '비밀번호',
+    formType: 'password'
   }
-]
+] as const;
 
 function MyPageForm() {
   return <MyPageFormContainer>
@@ -37,8 +42,8 @@ function MyPageForm() {
           <Row key={item.id}>
             <InputTitle>{item.title}</InputTitle>
             <InputContainer>
-              <Input type={item.type} />
-              {item.button ? <InputButton>{item.button}</InputButton> : null}
+              <ProfileUpdateInput type={item.type} formType={item.formType} />
+              {item.type === 'email' ? <InputButton>이메일 전송</InputButton> : null}
               <InputButton type='button'>변경</InputButton>
             </InputContainer>
           </Row>
@@ -69,20 +74,13 @@ const InputContainer = styled.div`
   margin-top: 10px;
   height: 35px;
   display: flex;
-  align-items: stretch;
+  /* align-items: stretch; */
   gap: 10px;
 `
-const Input = styled.input`
-  height: 100%;
-  background-color: #f5f5f5;
-  border: 1px #dedede solid;
-  font-size: 18px;
-  outline: none;
-  padding: 0 10px;
-`
+
 const InputButton = styled.button`
   margin: 0;
-  height: 100%;
+  /* height: 100%; */
   padding: 0 15px;
   background-color: white;
   border: 0.5px solid #dedede;
