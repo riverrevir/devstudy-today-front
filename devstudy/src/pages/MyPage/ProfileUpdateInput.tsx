@@ -23,11 +23,11 @@ function ProfileUpdateInput({ type, formType }: Props) {
 }
 export default ProfileUpdateInput;
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.div.attrs({ className: 'profile-input-wrapper' })`
   display: flex;
   position: relative;
 `
-const Input = styled.input`
+const Input = styled.input.attrs({ className: 'profile-input' })`
   /* height: 100%; */
   background-color: #f5f5f5;
   border: 1px #dedede solid;

@@ -76,8 +76,21 @@ const InputContainer = styled.div`
   display: flex;
   /* align-items: stretch; */
   gap: 10px;
-`
 
+  @media screen and (max-width: 1670px){
+    display: grid;
+    height: auto;
+    & > button {
+      height: 35px;
+      margin-top: 10px;
+    }
+
+    & > .profile-input-wrapper > .profile-input {
+      height: 35px;
+      width: 100%;
+    }
+  }
+`
 const InputButton = styled.button`
   margin: 0;
   /* height: 100%; */
