@@ -24,6 +24,8 @@ function ProfileUpdateInput({ type, formType }: Props) {
 export default ProfileUpdateInput;
 
 const InputWrapper = styled.div`
+  display: flex;
+  position: relative;
 `
 const Input = styled.input`
   /* height: 100%; */
@@ -34,5 +36,10 @@ const Input = styled.input`
   padding: 0 10px;
 `
 const Description = styled.p`
+  position: absolute;
+  bottom: -15px;
+  width: 350px;
+  margin: 0;
   color: red;
+  font-size: 12px;
 `
