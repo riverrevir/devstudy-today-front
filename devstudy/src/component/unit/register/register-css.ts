@@ -29,8 +29,13 @@ export const UserInfoWrapper = styled.div`
   justify-content: space-around;
 `;
 
+export const UserIdWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const UserId = styled.input`
-  width: 240px;
+  width: 160px;
   height: 40px;
   ::placeholder {
     opacity: 0.4;
@@ -39,7 +44,7 @@ export const UserId = styled.input`
 `;
 
 export const Password1 = styled.input`
-  width: 240px;
+  width: 270px;
   height: 40px;
   ::placeholder {
     opacity: 0.4;
@@ -48,7 +53,7 @@ export const Password1 = styled.input`
 `;
 
 export const Password2 = styled.input`
-  width: 240px;
+  width: 270px;
   height: 40px;
   ::placeholder {
     opacity: 0.4;
@@ -56,8 +61,13 @@ export const Password2 = styled.input`
   padding: 6px;
 `;
 
+export const EmailWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const Email = styled.input`
-  width: 240px;
+  width: 160px;
   height: 40px;
   ::placeholder {
     opacity: 0.4;
@@ -66,7 +76,7 @@ export const Email = styled.input`
 `;
 
 export const GenderWrapper = styled.div`
-  width: 240px;
+  width: 260px;
   height: 40px;
   display: flex;
   align-items: center;

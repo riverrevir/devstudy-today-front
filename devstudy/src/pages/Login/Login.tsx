@@ -10,7 +10,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        axios.post(`${process.env.REACT_APP_API}/api/user/login`, {
+        axios.post(`${process.env.REACT_APP_HOST}/api/user/login`, {
             userId,
             password
         }).then(res => console.log(res)).catch(err => console.log(err))

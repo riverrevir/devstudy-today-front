@@ -1,6 +1,9 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import * as S from "./register-css";
 import Button from "../../common/button01";
+import { instance } from "../../../api";
+import { useNavigate } from "react-router";
+import { NavigationUtil } from "../../../util/navigation-util";
 
 export default function Register() {
   const [inputs, setInputs] = useState({
@@ -11,6 +14,10 @@ export default function Register() {
     email: "",
   });
 
+  const focusRef = useRef<HTMLInputElement>(null);
+
+  const navigate = useNavigate();
+
   const onChangeInputs = (event: ChangeEvent<HTMLInputElement>) => {
     setInputs({
       ...inputs,
@@ -18,15 +25,42 @@ export default function Register() {
     });
   };
 
-  const onClickGender = (event: any) => {
-    console.log("event.target.checked:", event.target.checked);
-    console.log(event.target.value);
+  const onClickCheckIdDuplicate = async () => {
+    const { userId } = inputs;
+    try {
+      await instance.get(`user/auth/id/${userId}/exists`).then((response) => {
+        if (response.data.status === true) {
+          return alert(`${userId} 는 사용 하실수 없는 아이디 입니다.`);
+        } else {
+          alert("사용 가능한 아이디 입니다.");
+        }
+      });
+    } catch (error) {
+      if (error instanceof Error)
+        console.log("userId duplicate error:", error.message);
+    }
   };
 
-  const onClickSubmit = () => {
-    const { userId, password1, password2, email } = inputs;
+  const onClickCheckEmailDuplicate = async () => {
+    const { email } = inputs;
+    try {
+      await instance.get(`user/auth/email/${email}/exists`).then((response) => {
+        if (response.data.status === true) {
+          return alert(`${email} 는 사용 하실수 없는 이메일 입니다.`);
+        } else {
+          alert("사용 가능한 이메일 입니다.");
+        }
+      });
+    } catch (error) {
+      if (error instanceof Error)
+        console.log("email duplicate error:", error.message);
+    }
+  };
 
-    if (!userId || !password1 || !password2 || !email) {
+  const onClickSubmit = async () => {
+    const { userId, password1, password2, email, sex } = inputs;
+
+    if (!userId || !password1 || !password2 || !email || !sex) {
       return alert("회원정보를 입력해주세요");
     }
 
@@ -37,18 +71,57 @@ export default function Register() {
     if (password1 !== password2) {
       return alert("비밀번호가 일치하지않습니다");
     }
+
+    if (password1.length <= 2) {
+      return alert("비밀번호를 3자리 이상 적어주세요");
+    }
+
+    try {
+      await instance
+        .post(`/user/register`, {
+          userId,
+          password1,
+          password2,
+          email,
+          sex,
+        })
+        .then((response) => {
+          navigate(NavigationUtil.login);
+          console.log("response:", response);
+          console.log("response.data:", response.data);
+        });
+    } catch (error) {
+      if (error instanceof Error) console.log("register error:", error.message);
+    }
   };
+
+  useEffect(() => {
+    if (focusRef.current !== null) {
+      focusRef.current.focus();
+    }
+  }, []);
 
   return (
     <S.Container>
       <S.Wrapper>
         <S.Title>회원가입</S.Title>
         <S.UserInfoWrapper>
-          <S.UserId
-            placeholder="아이디"
-            name="userId"
-            onChange={onChangeInputs}
-          />
+          <S.UserIdWrapper>
+            <S.UserId
+              placeholder="아이디"
+              name="userId"
+              onChange={onChangeInputs}
+              ref={focusRef}
+            />
+            <Button
+              onClick={onClickCheckIdDuplicate}
+              text={"아이디 중복확인"}
+              width={"100px"}
+              height={"40px"}
+              color={"#fff"}
+              borderRadius={"2px 0px 0px 2px"}
+            />
+          </S.UserIdWrapper>
           <S.Password1
             type="password"
             placeholder="비밀번호"
@@ -61,12 +134,22 @@ export default function Register() {
             name="password2"
             onChange={onChangeInputs}
           />
-          <S.Email
-            placeholder="이메일"
-            name="email"
-            onChange={onChangeInputs}
-            type="email"
-          />
+          <S.EmailWrapper>
+            <S.Email
+              placeholder="이메일"
+              name="email"
+              onChange={onChangeInputs}
+              type="email"
+            />
+            <Button
+              onClick={onClickCheckEmailDuplicate}
+              text={"이메일 중복확인"}
+              width={"100px"}
+              height={"40px"}
+              color={"#fff"}
+              borderRadius={"2px 0px 0px 2px"}
+            />
+          </S.EmailWrapper>
           <S.GenderWrapper>
             <S.MaleWrapper>
               <label>남자</label>
@@ -74,7 +157,7 @@ export default function Register() {
                 type="radio"
                 name="sex"
                 value="male"
-                onClick={onClickGender}
+                onChange={onChangeInputs}
               />
             </S.MaleWrapper>
             <S.FemaleWrapper>
@@ -83,14 +166,14 @@ export default function Register() {
                 type="radio"
                 name="sex"
                 value="female"
-                onClick={onClickGender}
+                onChange={onChangeInputs}
               />
             </S.FemaleWrapper>
           </S.GenderWrapper>
           <Button
             onClick={onClickSubmit}
             text={"회원가입"}
-            width={"240px"}
+            width={"260px"}
             height={"40px"}
             color={"#fff"}
           />
