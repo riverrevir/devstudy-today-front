@@ -3,14 +3,15 @@ import { momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
 import { useCallback, useMemo, useState } from "react";
+import type { SlotInfo } from 'react-big-calendar';
 
 export default function Calendar() {
-  const localizer = momentLocalizer(moment);
 
+  const localizer = momentLocalizer(moment);
   const [events, setEvents] = useState<any[]>([]);
 
   const handleSelectSlot = useCallback(
-    ({ start, end }) => {
+    ({ start, end }: SlotInfo) => {
       const title = window.prompt("일정 적기");
       if (title) {
         setEvents((prev) => [...prev, { start, end, title }]);
