@@ -6,6 +6,7 @@ import HomePage from "./pages/Home";
 import RegisterPage from "./pages/Register";
 import Layout from "./component/common/layouts";
 import LandingPage from "./pages/Landing";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="register" element={<RegisterPage />} />
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </Layout>
   );
